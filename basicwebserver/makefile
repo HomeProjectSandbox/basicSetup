@@ -10,7 +10,7 @@ build_and_run:
 	./app
 docker_run:
 	docker build -t $(IMAGE_NAME) .
-	docker run -d -it --rm --name $(CONTAINER_NAME) -p 3333:3333 --network prom-net $(IMAGE_NAME)
+	docker run -d -it --rm --name $(CONTAINER_NAME) -p 3333:3333 --network monitoring $(IMAGE_NAME)
 clean:
 	docker container rm -f $(CONTAINER_NAME)
 	docker image rm -f $(IMAGE_NAME)

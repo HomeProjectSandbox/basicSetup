@@ -18,7 +18,7 @@ run: build_prometheus
 		--name $(CONTAINER_NAME) \
 		-v $(VOLUME_NAME):/prometheus \
 		-p 9090:9090 \
-		--network prom-net \
+		--network monitoring \
 		$(IMAGE_NAME)
 
 clean:
@@ -26,4 +26,3 @@ clean:
 	docker volume rm $(VOLUME_NAME) || true
 	docker volume prune
 	docker image rm -f $(IMAGE_NAME)
-	

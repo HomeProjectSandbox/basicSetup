@@ -1,0 +1,38 @@
+services:
+  prometheus:
+    build: 
+      context: prometheus
+      dockerfile: Dockerfile
+    ports:
+      - 9090:9090
+    #volumes:
+    #  - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitoring
+  my-running-app:
+    build: 
+      context: basicwebserver
+      dockerfile: Dockerfile
+    ports:
+      - 3333:3333
+    networks:
+      - monitoring
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - 3000:3000
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin         # Admin username
+      - GF_SECURITY_ADMIN_PASSWORD=admin     # Admin password
+#    volumes:
+#      - grafana-data:/var/lib/grafana         # Persistent data
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge
+
+#volumes:
+#  grafana-data:
