@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webappexample
+  labels:
+    app: webappexample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webappexample
+  template:
+    metadata:
+      labels:
+        app: webappexample
+    spec:
+      containers:
+      - name: webapp
+        image: tamasujvari/basicsetup_basicwebserver:arm
+        ports:
+        - containerPort: 3333
