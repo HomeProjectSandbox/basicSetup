@@ -23,3 +23,11 @@ build_and_push:
 		docker build -t tamasujvari/basicsetup_basicwebserver:latest .; \
 		docker push tamasujvari/basicsetup_basicwebserver:latest; \
 	fi
+
+build_and_push_arm:
+	docker buildx build -t tamasujvari/basicsetup_basicwebserver:arm --platform linux/arm64 .
+	docker push tamasujvari/basicsetup_basicwebserver:arm
+
+build_and_push_x86:
+	docker buildx build -t tamasujvari/basicsetup_basicwebserver:amd --platform linux/amd64 .
+	docker push tamasujvari/basicsetup_basicwebserver:amd
