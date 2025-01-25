@@ -14,4 +14,12 @@ docker_run:
 clean:
 	docker container rm -f $(CONTAINER_NAME)
 	docker image rm -f $(IMAGE_NAME)
-	
+
+build_and_push:
+	@if [ "$(shell uname -m)" = "arm64" ] || [ "$(shell uname -m)" = "aarch64" ]; then \
+		docker build -t tamasujvari/basicsetup_basicwebserver:arm .; \
+		docker push tamasujvari/basicsetup_basicwebserver:arm; \
+	else \
+		docker build -t tamasujvari/basicsetup_basicwebserver:latest .; \
+		docker push tamasujvari/basicsetup_basicwebserver:latest; \
+	fi
