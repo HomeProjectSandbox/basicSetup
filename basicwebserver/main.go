@@ -20,6 +20,8 @@ func main() {
 
 	mux.Handle("/metrics", promhttp.Handler())
 
+	mux.HandleFunc("/test", handler.GetTest)
+
 	ctx, cancelCtx := context.WithCancel(context.Background())
 	serverOne := &http.Server{
 		Addr:    ":3333",

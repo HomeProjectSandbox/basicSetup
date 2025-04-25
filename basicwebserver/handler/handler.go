@@ -33,8 +33,26 @@ func GetRoot(w http.ResponseWriter, r *http.Request) {
 
 	io.WriteString(w, "This is my website!\n")
 }
+
 func GetHello(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("got /hello request\n")
 	rootHelloTotal.Inc()
 	io.WriteString(w, "Hello, HTTP!\n")
+}
+
+func GetTest(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "text/html")
+	io.WriteString(w, `
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<title>Hello Page</title>
+		</head>
+		<body>
+			<h1>Hello, HTTP!</h1>
+			<p>This is a simple HTML page served by Go.</p>
+		</body>
+		</html>
+	`)
 }

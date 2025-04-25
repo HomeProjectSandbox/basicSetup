@@ -5,6 +5,11 @@ run:
 	go run .
 build:
 	go build -o app .
+
+build-amd64:
+	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o app_amd64 .
+build-arm64:
+	GOOS=linux GOARCH=arm64 CGO_ENABLED=0 go build -o app_arm .
 build_and_run:
 	go build -o app .
 	./app
